@@ -1,6 +1,7 @@
 name: Render CV
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths: [cv.html, render.mjs]
@@ -10,7 +11,8 @@ env:
 
 jobs:
   render:
-    runs-on: ubuntu-latest
+    runs-on:
+  workflow_dispatch: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -19,12 +21,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version:
+  workflow_dispatch: 22
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.24.0
+          version:
+  workflow_dispatch: 10.24.0
 
       - name: Install dependencies
         run: pnpm install --config.confirmModulesPurge=false
