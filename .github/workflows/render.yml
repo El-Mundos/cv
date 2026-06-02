@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths: [cv.html, render.mjs]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -24,7 +27,10 @@ jobs:
           version: 10.24.0
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --config.confirmModulesPurge=false
+
+      - name: Install Puppeteer browser
+        run: pnpm exec puppeteer browsers install chrome
 
       - name: Render PDF and update raw
         run: node render.mjs
