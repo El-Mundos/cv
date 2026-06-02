@@ -1,6 +1,8 @@
 node_modules/
 .pnpm-store/
 pnpm-workspace.yaml
-photo.jpg
+
+# photo.jpg is now a real asset referenced by cv.html (relative path), so it
+# must be tracked. The base64 artifacts below are intermediate, keep ignoring.
 photo.b64
 *.b64

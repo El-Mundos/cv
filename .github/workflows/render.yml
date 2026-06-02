@@ -3,7 +3,7 @@ name: Render CV
 on:
   push:
     branches: [main]
-    paths: [cv.html, render.mjs]
+    paths: [cv.html, render.mjs, 'fonts/**', photo.jpg]
   workflow_dispatch:
 
 env:
@@ -36,6 +36,8 @@ jobs:
       - name: Install Puppeteer browser
         run: pnpm exec puppeteer browsers install chrome
 
+      # render.mjs starts its own local static server so Puppeteer can resolve
+      # the relative font/photo paths in cv.html (page.goto, not setContent).
       - name: Render PDF and update raw
         run: node render.mjs
 
